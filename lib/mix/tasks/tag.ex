@@ -9,7 +9,7 @@ defmodule Mix.Tasks.Craft.Tag do
 
   def run(_) do
     {:ok, version} = current_version()
-    {output, exit_code} = System.cmd("git", ["tag", "#{version}"], into: IO.stream())
+    {output, exit_code} = System.cmd("git", ["tag", "v#{version}"], into: IO.stream())
 
     if exit_code != 0 do
       raise "Git failed with a non-zero exit code\n\n#{output}"
