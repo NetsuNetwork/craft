@@ -8,12 +8,6 @@ defmodule Mix.Tasks.Craft.Release do
   import Craft.Common
 
   def run(_) do
-    IO.puts "Are you sure you want to release this tag?"
-
-    if IO.gets("(Type 'yes' to confirm): ") |> String.downcase()  != "yes" do
-      exit(:normal)
-    end
-
     {output, exit_code} = System.cmd("git", ["add", "CHANGELOG.md"], into: IO.stream())
 
     if exit_code != 0 do
