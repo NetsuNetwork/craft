@@ -7,30 +7,27 @@ defmodule Mix.Tasks.Craft.Bump do
   import Craft.Common
 
   def run(["major"]) do
-    {:ok, version} = current_version()
-    current = Version.parse!(version)
+    log_and_execute("Bumping: Major", fn version, current ->
+      new = current |> Map.merge(%{major: current.major + 1}) |> to_string
 
-    new = current |> Map.merge(%{minor: current.major + 1}) |> to_string
-
-    overwrite_file("mix.exs", version, new)
+      overwrite_file("mix.exs", version, new)
+    end)
   end
 
   def run(["minor"]) do
-    {:ok, version} = current_version()
-    current = Version.parse!(version)
+    log_and_execute("Bumping: Minor", fn version, current ->
+      new = current |> Map.merge(%{minor: current.minor + 1}) |> to_string
 
-    new = current |> Map.merge(%{minor: current.minor + 1}) |> to_string
-
-    overwrite_file("mix.exs", version, new)
+      overwrite_file("mix.exs", version, new)
+    end)
   end
 
   def run(["patch"]) do
-    {:ok, version} = current_version()
-    current = Version.parse!(version)
+    log_and_execute("Bumping: Patch", fn version, current ->
+      new = current |> Map.merge(%{patch: current.patch + 1}) |> to_string
 
-    new = current |> Map.merge(%{patch: current.patch + 1}) |> to_string
-
-    overwrite_file("mix.exs", version, new)
+      overwrite_file("mix.exs", version, new)
+    end)
   end
 
   @shortdoc "Bumps the version of the current Mix project"
