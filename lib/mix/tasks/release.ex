@@ -8,12 +8,6 @@ defmodule Mix.Tasks.Craft.Release do
   import Craft.Common
 
   def run(_) do
-    {output, exit_code} = System.cmd("git", ["add", "CHANGELOG.md"], into: IO.stream())
-
-    if exit_code != 0 do
-      raise "Git failed with a non-zero exit code\n\n#{output}"
-    end
-
     {:ok, version} = current_version()
     {output, exit_code} = System.cmd("git", ["commit", "--no-verify", "--message", "release: #{version}"], into: IO.stream())
 
