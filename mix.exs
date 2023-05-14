@@ -4,7 +4,7 @@ defmodule Craft.MixProject do
   def project do
     [
       app: :craft,
-      version: "0.2.0",
+      version: "0.2.1",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -22,7 +22,7 @@ defmodule Craft.MixProject do
   defp deps do
     [
       # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.2.0"}
+      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.2.1"}
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
